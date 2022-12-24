@@ -82,13 +82,13 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
         }
         if (isInPictureInPictureMode == false && onStopCalled) {
             // Picture-in-Picture mode has been closed, we can (should !) end the call
-            getJitsiView().leave()
+                //getJitsiView().leave()
         }
     }
 
     private val myReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            when (intent?.action) {
+            when (intent.action) {
                 EKO_JITSI_CLOSE -> finish()
             }
         }
@@ -156,11 +156,13 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
             return;
         }
         try {
-            var jitsiView: JitsiMeetView = jitsiView;
+            val jitsiView: JitsiMeetView = jitsiView;
             Log.d(EKO_JITSI_TAG, "ABC " + jitsiView.javaClass.canonicalName);
-            var ab = jitsiView.getRootReactView(jitsiView);
-            Log.d(EKO_JITSI_TAG, "ABC " + ab.javaClass.canonicalName);
-            var rootReactView: ReactRootView = ab as ReactRootView;
+            val ab = getRootReactView(jitsiView);
+            if (ab != null) {
+                Log.d(EKO_JITSI_TAG, "ABC " + ab.javaClass.canonicalName)
+            };
+            val rootReactView: ReactRootView = ab as ReactRootView;
             Log.d(EKO_JITSI_TAG, "ABC " + rootReactView.javaClass.canonicalName);
             logContentView(rootReactView.rootViewGroup, "");
         } catch (ex: Exception) {
@@ -279,7 +281,7 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
 
             // If you want to display the keyguard to prompt the user to unlock the phone:
             val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-            keyguardManager?.requestDismissKeyguard(this, null)
+            keyguardManager.requestDismissKeyguard(this, null)
         } else {
             // For older versions, do it as you did before.
             window.addFlags(
@@ -310,14 +312,17 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
     }
 }
 
-fun BaseReactView<JitsiMeetViewListener>.getRootReactView(view: JitsiMeetView): Any {
+fun getRootReactView(view: JitsiMeetView): Any? {
 
-    return BaseReactView::class.java.getDeclaredField("reactRootView").let {
+    return ReactRootView::class.java.getDeclaredField("reactRootView").let {
         it.isAccessible = true;
-        val value = it.get(view);
+        val value = it.get(view)
         //todo
         return@let value;
     }
 
-//    return this.reactRootView;
+
+//return this.reactRootView;
+
+
 }
