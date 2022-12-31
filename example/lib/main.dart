@@ -211,7 +211,7 @@ class _MyAppState extends State<MyApp> {
         ..audioOnly = isAudioOnly
         ..audioMuted = isAudioMuted
         ..videoMuted = isVideoMuted
-        ..whiteboardUrl='https://github.com/'
+        ..whiteboardUrl='https://www.github.com/'
         ..featureFlags.addAll(featureFlags);
 
       debugPrint("JitsiMeetingOptions: $options");

@@ -1,11 +1,11 @@
 package com.ekodemy.eko_jitsi
 
-import android.app.AlertDialog
 import android.app.KeyguardManager
 import android.content.*
 import android.content.BroadcastReceiver
 import android.content.res.Configuration
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +13,7 @@ import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
+import androidx.core.content.ContextCompat
 import com.ekodemy.eko_jitsi.EkoJitsiPlugin.Companion.EKO_JITSI_CLOSE
 import com.ekodemy.eko_jitsi.EkoJitsiPlugin.Companion.EKO_JITSI_TAG
 import com.facebook.react.ReactRootView
@@ -218,13 +219,18 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
             btnTag.setTextColor(Color.WHITE);
             btnTag.setOnClickListener {
                 EkoJitsiEventStreamHandler.instance.onWhiteboardClicked();
-//                Toast.makeText(this, "Whiteboard", Toast.LENGTH_SHORT).show()
+                  //Toast.makeText(this, "Whiteboard", Toast.LENGTH_SHORT).show()
+
+                /*
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 alert.setTitle("Slider")
+                 */
 
+                /*
                 val wv = WebView(this)
                 wv.loadUrl(whiteboardUrl!!)
                 wv.webViewClient = object : WebViewClient() {
+                    @Deprecated("Deprecated in Java")
                     override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                         view.loadUrl(url)
                         return true
@@ -233,11 +239,33 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
                 wv.settings.javaScriptEnabled = true;
                 wv.settings.javaScriptCanOpenWindowsAutomatically = true;
                 wv.settings.domStorageEnabled = true;
+                */
+
+                /*
+                val d: Dialog = alert.setView(View(this)).create()
+                val lp: WindowManager.LayoutParams = WindowManager.LayoutParams()
+                lp.copyFrom(d.window!!.attributes)
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT
+
+                val width = (resources.displayMetrics.widthPixels * 0.90).toInt()
+                val height = (resources.displayMetrics.heightPixels * 0.90).toInt()
+
+                d.window!!.setLayout(width, height);
+
+
+                d.show()
+                d.window!!.attributes = lp
 
                 alert.setView(wv)
+
                 alert.setNegativeButton("Close",
                     DialogInterface.OnClickListener { dialog, id -> dialog.dismiss() });
                 alert.show()
+                */
+
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(whiteboardUrl!!))
+                ContextCompat.startActivity(context!!, browserIntent, null)
             }
 
         } else {
