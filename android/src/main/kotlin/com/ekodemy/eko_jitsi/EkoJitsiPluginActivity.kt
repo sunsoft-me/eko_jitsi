@@ -253,7 +253,6 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
 
                 d.window!!.setLayout(width, height);
 
-
                 d.show()
                 d.window!!.attributes = lp
 
@@ -298,7 +297,7 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        turnScreenOffAndKeyguardOn();
+        turnScreenOffAndKeyguardOn()
     }
 
     private fun turnScreenOnAndKeyguardOff() {
