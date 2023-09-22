@@ -39,7 +39,6 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
         var classroomLogoId: Int? = null;
         var context: Context? = null;
 
-
         @JvmStatic
         fun launchActivity(
             context: Context?,
@@ -134,6 +133,7 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
         )
         EkoJitsiEventStreamHandler.instance.onConferenceTerminated(data)
         super.onConferenceTerminated(data)
+
     }
 
     override fun onParticipantLeft(data: HashMap<String, Any>?) {
@@ -200,7 +200,6 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
 
     }
     //END
-
     fun test() {
         if(true){
             return;
@@ -348,21 +347,22 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
                 progressBar.layoutParams = layoutParams
                 (jitsiView as FrameLayout).addView(progressBar)
 
-                /*
-                linearLayout.layoutParams = RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.MATCH_PARENT,
-                    RelativeLayout.LayoutParams.MATCH_PARENT
-                )
+
+                //val webLayParams = RelativeLayout.LayoutParams(
+                  //  RelativeLayout.LayoutParams.MATCH_PARENT,
+                  //  RelativeLayout.LayoutParams.MATCH_PARENT,
+               // )
+               // wv.layoutParams = webLayParams
                 // Set the background color
-                linearLayout.setBackgroundColor(Color.RED) // Replace with your desired color
+                //linearLayout.setBackgroundColor(Color.RED) // Replace with your desired color
 
                 // Add other views to the LinearLayout
-                linearLayout.addView(wv)
-                */
+                //linearLayout.addView(wv)
+
                 bottomSheetDialog.setContentView(wv)
 
                 // Inflate the layout for the bottom sheet
-               // val sheetView = layoutInflater.inflate(linearLayout, null)
+               //val sheetView = layoutInflater.inflate(linearLayout, null)
 
                 // Customize the bottom sheet view as needed
                 // For example, you can find and configure views within the sheetView
@@ -390,6 +390,13 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
         layout.addView(ekoLayout, 0);
     }
     //END
+
+    //START
+    /*
+
+     */
+    //END
+
 
     fun logContentView(parent: View, indent: String) {
         if (parent is ReactViewGroup) {
