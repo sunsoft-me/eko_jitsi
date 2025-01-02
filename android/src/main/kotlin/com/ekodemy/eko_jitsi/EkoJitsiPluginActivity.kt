@@ -75,10 +75,9 @@ class EkoJitsiPluginActivity : JitsiMeetActivity() {
     //var jitsiView: JitsiMeetView ? = null
 
     override fun onPictureInPictureModeChanged(
-        isInPictureInPictureMode: Boolean,
-        newConfig: Configuration?
+        isInPictureInPictureMode: Boolean
     ) {
-        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode)
         if (isInPictureInPictureMode) {
             EkoJitsiEventStreamHandler.instance.onPictureInPictureWillEnter()
             this.ekoLayout!!.setVisibility(LinearLayout.GONE);
