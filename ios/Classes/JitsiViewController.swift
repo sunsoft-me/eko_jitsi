@@ -70,7 +70,8 @@ class JitsiViewController: UIViewController {
         jitsiMeetView.delegate = self
         self.jitsiMeetView = jitsiMeetView
         let options = JitsiMeetConferenceOptions.fromBuilder { (builder) in
-            // builder.welcomePageEnabled = true
+            builder.setFeatureFlag("welcomepage.enabled", withValue: false)
+
             builder.room = self.roomName
             builder.serverURL = self.serverUrl            
             builder.userInfo = self.jistiMeetUserInfo
